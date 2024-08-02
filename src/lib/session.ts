@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { defaultThemeColor, defaultThemeScheme } from "./theme";
 import jwt, { JwtPayload } from "jsonwebtoken";
 
-const SESSION_COOKIE_NAME = "RS_session";
+const SESSION_COOKIE_NAME = "NG_session";
 const SESSION_SECRET = process.env.SESSION_SECRET || "SESSION_SECRET";
 
 if (!SESSION_SECRET) {
