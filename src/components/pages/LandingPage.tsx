@@ -87,6 +87,25 @@ export default function LandingPage() {
               </Link>
             </div>
           </div>
+
+          <div className="space-y-2 pt-12">
+            <h3 className="text-sm font-bold">Quick guides</h3>
+            <div className="grid grid-cols-3 gap-4">
+              <Link
+                href="/forms"
+                className="rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
+              >
+                <div className="flex justify-center text-sm font-medium">Form actions</div>
+              </Link>
+              <Link
+                href="https://twitter.com/AlexandroMtzG"
+                target="_blank"
+                className="rounded-md border border-dashed border-border bg-background p-3 text-primary opacity-50 hover:bg-secondary/90 hover:text-secondary-foreground"
+              >
+                <div className="flex justify-center text-sm font-medium">Let me know!</div>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
