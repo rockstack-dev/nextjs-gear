@@ -1,0 +1,12 @@
+{
+  "hello": "Hello",
+  "language": "Language",
+  "locales": {
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French"
+  },
+  "copy": "Copy",
+  "sponsoredBy": "Sponsored by",
+  "select": "Select"
+}
