@@ -70,8 +70,17 @@ export default function LandingPage() {
               </button>
               <code className="text-xs">git clone {GITHUB_URL}</code>
             </pre>
-            <div className="mt-1 flex justify-end text-xs">
-              <Link href="https://saasrock.com" className="text-muted-foreground hover:underline" target="_blank">
+            <div className="mt-1 flex justify-between text-xs text-muted-foreground">
+              <div className="flex items-center space-x-2 font-medium" style={{ fontSize: "0.6rem" }}>
+                <Link href="https://remix-gear.vercel.app/" className="hover:underline">
+                  Remix
+                </Link>
+                <div>•</div>
+                <Link href="https://nextjs-gear.vercel.app/" className="hover:underline">
+                  Next.js
+                </Link>
+              </div>
+              <Link href="https://saasrock.com" className="hover:underline" target="_blank">
                 {t("sponsoredBy")} <span className="font-bold">SaasRock</span>
               </Link>
             </div>
