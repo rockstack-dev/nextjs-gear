@@ -9,9 +9,11 @@ import GitHubIcon from "../ui/icons/GitHubIcon";
 import DarkModeToggle from "../ui/selectors/DarkModeToggle";
 import LocaleSelector from "../ui/selectors/LocaleSelector";
 import ThemeSelector from "../ui/selectors/ThemeSelector";
+import TwitterIcon from "../ui/icons/TwitterIcon";
 
 const GITHUB_URL = "https://github.com/rockstack-dev/nextjs-gear.git";
 const YOUTUBE_URL = "https://www.youtube.com/@rockstack-dev";
+const TWITTER_URL = "https://twitter.com/AlexandroMtzG";
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -30,6 +32,11 @@ export default function LandingPage() {
             <Button variant="ghost" asChild size="sm">
               <Link href={GITHUB_URL} target="_blank">
                 <GitHubIcon className="h-5 w-5 text-muted-foreground" />
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild size="sm">
+              <Link href={TWITTER_URL} target="_blank">
+                <TwitterIcon className="h-5 w-5 text-muted-foreground" />
               </Link>
             </Button>
             <LocaleSelector />
@@ -83,27 +90,34 @@ export default function LandingPage() {
                 </Link>
               </div>
               <Link href="https://saasrock.com/?ref=remix-gear" className="text-muted-foreground hover:underline" target="_blank">
-                {t("sponsoredBy")} <span className="font-bold">SaasRock</span>
+                {t("by")} <span className="font-bold">SaasRock</span>
               </Link>
             </div>
           </div>
 
           <div className="space-y-2 pt-12">
-            <h3 className="text-sm font-bold">Quick guides</h3>
+            <h3 className="text-sm font-bold">Demos</h3>
             <div className="grid grid-cols-3 gap-4">
               <Link
                 href="/forms"
-                className="rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
+                className="h-12 rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
               >
                 <div className="flex justify-center text-sm font-medium">Form actions</div>
               </Link>
               <Link
                 href="https://twitter.com/AlexandroMtzG"
                 target="_blank"
-                className="rounded-md border border-dashed border-border bg-background p-3 text-primary opacity-50 hover:bg-secondary/90 hover:text-secondary-foreground"
+                className="h-12 rounded-md border border-dashed border-border bg-background p-3 text-primary opacity-50 hover:bg-secondary/90 hover:text-secondary-foreground"
               >
                 <div className="flex justify-center text-sm font-medium">Let me know!</div>
               </Link>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
+              <div className="h-12 rounded-md border border-dashed border-border bg-secondary p-3 text-primary opacity-50"></div>
             </div>
           </div>
         </div>
