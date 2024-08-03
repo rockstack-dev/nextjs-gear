@@ -7,4 +7,4 @@
 
 ## Looking for a SaaS starter kit?
 
-Check out [Rockstack](https://rockstack.dev/?ref=nextjs-gear) or [SaasRock](https://saasrock.com/?ref=nextjs-gear)!
+Check out [SaasRock](https://saasrock.com/?ref=nextjs-gear) or [Rockstack](https://rockstack.dev/?ref=nextjs-gear)!
