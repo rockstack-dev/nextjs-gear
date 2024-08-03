@@ -3,11 +3,11 @@
 import { formSubmissionAction } from "@/app/(marketing)/forms/actions";
 import clsx from "clsx";
 import { useActionState, useRef, useEffect } from "react";
-import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 import { toast } from "sonner";
 
-export default function FormSubmission() {
+export default function FormActions() {
   const [actionData, action, pending] = useActionState(formSubmissionAction, null);
   const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {

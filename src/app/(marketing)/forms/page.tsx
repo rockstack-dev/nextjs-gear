@@ -1,4 +1,4 @@
-import FormSubmission from "@/components/FormSubmission";
+import FormActions from "@/components/demos/FormActions";
 import HomeBreadcrumb from "@/components/HomeBreadcrumb";
 
 export default function () {
@@ -7,7 +7,7 @@ export default function () {
       <HomeBreadcrumb title="Form Actions" />
       <h1 className="text-3xl font-bold">Next.js Form Actions</h1>
       <div>
-        <FormSubmission />
+        <FormActions />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { I18nProvider } from "@/i18n/i18n-context";
 import { getUserInfo } from "@/lib/session";
 import clsx from "clsx";
 import { Metadata } from "next";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +38,7 @@ export default async function RootLayout({
       <html lang={lng} dir={dir(lng)} className={scheme === "dark" ? "dark" : ""}>
         <body className={clsx(`theme-${userInfo.theme}`, "max-h-full min-h-screen max-w-full bg-background text-foreground", inter.style)}>
           {children}
-          <Toaster />
+          <SonnerToaster />
         </body>
       </html>
     </I18nProvider>
