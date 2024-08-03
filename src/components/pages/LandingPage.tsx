@@ -89,7 +89,7 @@ export default function LandingPage() {
                   Next.js
                 </Link>
               </div>
-              <Link href="https://saasrock.com/?ref=remix-gear" className="text-muted-foreground hover:underline" target="_blank">
+              <Link href="https://saasrock.com/?ref=nextjs-gear" className="text-muted-foreground hover:underline" target="_blank">
                 {t("by")} <span className="font-bold">SaasRock</span>
               </Link>
             </div>
