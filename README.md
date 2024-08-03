@@ -7,4 +7,6 @@
 
 ## Looking for a SaaS starter kit?
 
+Try [Remix Gear](https://github.com/rockstack-dev/remix-gear)
+
 Check out [SaasRock](https://saasrock.com/?ref=nextjs-gear) or [RockStack](https://rockstack.dev/?ref=nextjs-gear)!
