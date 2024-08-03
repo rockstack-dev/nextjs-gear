@@ -99,7 +99,7 @@ export default function LandingPage() {
             <h3 className="text-sm font-bold">Demos</h3>
             <div className="grid grid-cols-3 gap-4">
               <Link
-                href="/forms"
+                href="https://nextjs-gear-git-forms-alexandro-pro.vercel.app/forms"
                 className="h-12 rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
               >
                 <div className="flex justify-center text-sm font-medium">Form actions</div>
