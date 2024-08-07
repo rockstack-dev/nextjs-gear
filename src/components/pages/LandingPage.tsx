@@ -105,6 +105,12 @@ export default function LandingPage() {
                 <div className="flex justify-center text-sm font-medium">Form actions</div>
               </Link>
               <Link
+                href="https://nextjs-gear-git-ai-structured-alexandro-pro.vercel.app/ai-structured-outputs"
+                className="h-12 rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
+              >
+                <div className="flex justify-center text-sm font-medium">AI: Structured Outputs</div>
+              </Link>
+              <Link
                 href="https://twitter.com/AlexandroMtzG"
                 target="_blank"
                 className="h-12 rounded-md border border-dashed border-border bg-background p-3 text-primary opacity-50 hover:bg-secondary/90 hover:text-secondary-foreground"
