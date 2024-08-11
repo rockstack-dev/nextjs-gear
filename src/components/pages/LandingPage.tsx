@@ -25,17 +25,17 @@ export default function LandingPage() {
           <h1 className="text-2xl font-bold sm:text-3xl">Next.js Gear 🦾</h1>
           <div className="flex flex-wrap items-center justify-center gap-2">
             <Button variant="ghost" asChild size="sm">
-              <Link href={YOUTUBE_URL} target="_blank">
+              <Link href={YOUTUBE_URL}>
                 <YouTubeIcon className="h-5 w-5 text-muted-foreground" />
               </Link>
             </Button>
             <Button variant="ghost" asChild size="sm">
-              <Link href={GITHUB_URL} target="_blank">
+              <Link href={GITHUB_URL}>
                 <GitHubIcon className="h-5 w-5 text-muted-foreground" />
               </Link>
             </Button>
             <Button variant="ghost" asChild size="sm">
-              <Link href={TWITTER_URL} target="_blank">
+              <Link href={TWITTER_URL}>
                 <TwitterIcon className="h-5 w-5 text-muted-foreground" />
               </Link>
             </Button>
@@ -47,19 +47,19 @@ export default function LandingPage() {
         <div className="space-y-1">
           <div className="text-muted-foreground">
             The cleanest way to start a{" "}
-            <Link href="https://nextjs.org/" className="font-bold text-foreground hover:underline" target="_blank">
+            <Link href="https://nextjs.org/" className="font-bold text-foreground hover:underline">
               Next.js
             </Link>{" "}
             project with{" "}
-            <Link href="https://tailwindcss.com/" className="font-bold text-foreground hover:underline" target="_blank">
+            <Link href="https://tailwindcss.com/" className="font-bold text-foreground hover:underline">
               Tailwind CSS
             </Link>
             ,{" "}
-            <Link href="https://ui.shadcn.com/" className="font-bold text-foreground hover:underline" target="_blank">
+            <Link href="https://ui.shadcn.com/" className="font-bold text-foreground hover:underline">
               shadcn/ui
             </Link>
             , and{" "}
-            <Link href="https://github.com/sergiodxa/remix-i18next" className="font-bold text-foreground hover:underline" target="_blank">
+            <Link href="https://www.i18next.com/" className="font-bold text-foreground hover:underline">
               i18n
             </Link>
             .
@@ -89,7 +89,7 @@ export default function LandingPage() {
                   Next.js
                 </Link>
               </div>
-              <Link href="https://saasrock.com/?ref=nextjs-gear" className="text-muted-foreground hover:underline" target="_blank">
+              <Link href="https://saasrock.com/?ref=nextjs-gear" className="text-muted-foreground hover:underline">
                 {t("by")} <span className="font-bold">SaasRock</span>
               </Link>
             </div>
@@ -99,14 +99,13 @@ export default function LandingPage() {
             <h3 className="text-sm font-bold">Demos</h3>
             <div className="grid grid-cols-3 gap-4">
               <Link
-                href="/forms"
+                href="/whatsapp-api"
                 className="h-12 rounded-md border border-border bg-background p-3 text-primary hover:bg-secondary/90 hover:text-secondary-foreground"
               >
-                <div className="flex justify-center text-sm font-medium">Form actions</div>
+                <div className="flex justify-center text-sm font-medium">WhatsApp API</div>
               </Link>
               <Link
                 href="https://twitter.com/AlexandroMtzG"
-                target="_blank"
                 className="h-12 rounded-md border border-dashed border-border bg-background p-3 text-primary opacity-50 hover:bg-secondary/90 hover:text-secondary-foreground"
               >
                 <div className="flex justify-center text-sm font-medium">Let me know!</div>
