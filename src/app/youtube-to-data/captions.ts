@@ -68,7 +68,9 @@ async function processTrack({
   schemaObject: string;
   prompt: string;
 }) {
-  const captionsString = await downloadCaptions(track.baseUrl);
+  const captionsString = await downloadCaptions(track.baseUrl).catch((e) => {
+    throw new Error(`Error downloading captions: ${e.message}`);
+  });
 
   const cleanedText = cleanText(captionsString);
 
@@ -109,11 +111,19 @@ ${cleanedText}`,
 async function downloadCaptions(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     https
-      .get(`${url}&fmt=xml}`, (res) => {
+      .get(`${url}`, (res) => {
         let data = "";
-        res.on("data", (chunk) => (data += chunk));
-        res.on("end", () => resolve(data));
-        res.on("error", (err) => reject(err));
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
+
+        res.on("end", () => {
+          resolve(data);
+        });
+
+        res.on("error", (err) => {
+          reject(err);
+        });
       })
       .on("error", (err) => reject(err));
   });
