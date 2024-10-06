@@ -67,9 +67,51 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "100%",
+          },
+        },
+        dark: {
+          css: {
+            color: theme("colors.gray.400"),
+            "h2, h3, h4, thead th": {
+              color: theme("colors.gray.200"),
+            },
+            "h2 small, h3 small, h4 small": {
+              color: theme("colors.gray.400"),
+            },
+            code: {
+              color: theme("colors.gray.200"),
+            },
+            hr: {
+              borderColor: theme("colors.gray.200"),
+              opacity: "0.05",
+            },
+            pre: {
+              boxShadow: "inset 0 0 0 1px rgb(255 255 255 / 0.1)",
+            },
+            a: {
+              color: theme("colors.white"),
+              borderBottomColor: theme("colors.sky.400"),
+            },
+            strong: {
+              color: theme("colors.gray.200"),
+            },
+            thead: {
+              color: theme("colors.gray.300"),
+              borderBottomColor: "rgb(148 163 184 / 0.2)",
+            },
+            "tbody tr": {
+              borderBottomColor: "rgb(148 163 184 / 0.1)",
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
 
 export default config;
