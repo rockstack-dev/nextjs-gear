@@ -35,6 +35,7 @@ export default function () {
     } else {
       toast(actionData?.success);
       setResult(actionData?.result);
+      setError(undefined);
     }
   }, [actionData]);
 
@@ -88,7 +89,7 @@ The rating system is:
         </form>
 
         <div className="mt-4">
-          <div className="prose dark:dark-prose">
+          <div className="dark:dark-prose prose">
             <h2 className="text-xl font-bold">Result</h2>
             {pending ? (
               <div className="rounded-md bg-secondary p-2 text-muted-foreground">Loading...</div>
