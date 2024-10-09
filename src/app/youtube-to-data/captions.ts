@@ -36,13 +36,10 @@ export async function captions({
       }
 
       if (track) {
-        try {
-          return await processTrack({ track, info, lang, videoUrl, apiKey, schemaObject, prompt });
-        } catch (err) {
-          console.error(`Error processing language ${lang}:`, err);
-        }
+        return await processTrack({ track, info, lang, videoUrl, apiKey, schemaObject, prompt });
       } else {
         console.log("Could not find captions for", lang);
+        throw new Error(`Could not find captions for ${lang}`);
       }
     }
   } catch (err) {

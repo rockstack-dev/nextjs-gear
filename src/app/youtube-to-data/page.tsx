@@ -73,6 +73,7 @@ The rating system is:
             onChange={(e) => setApiKey(e.target.value)}
             placeholder="OpenAI API Key"
             style={{ WebkitTextSecurity: "disc" } as any}
+            autoComplete="off"
           />
           <Input name="videoUrl" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="YouTube video URL" required />
           <Textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Prompt" required />
