@@ -32,8 +32,7 @@ export default function () {
   useEffect(() => {
     if (actionData?.error) {
       setError(actionData.error);
-    } else {
-      toast(actionData?.success);
+    } else if (actionData?.success) {
       setResult(actionData?.result);
       setError(undefined);
     }
