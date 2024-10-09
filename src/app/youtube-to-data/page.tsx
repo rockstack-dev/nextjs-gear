@@ -41,25 +41,8 @@ export default function () {
   const [apiKey, setApiKey] = useState("");
   const [error, setError] = useState<string>();
   const [result, setResult] = useState<any>({});
-  const [prompt, setPrompt] = useState<string>(`Extract data results (0, 1 or more) from a video transcript.
-		
-The rating system is:
-- Awesometacular
-- I'd buy it on Blu-Ray
-- It's a good time, no alcohol required
-- Better if you're drunk
-- Not going to remember it in T-minus X
-- Dogshit`);
   const [videoUrl, setVideoUrl] = useState<string>("https://www.youtube.com/watch?v=PJORkfmnmdY&t=1s");
-  const [schema, setSchema] = useState<string>(JSON.stringify(defaultSchema, null, 2));
 
-  function getObjSchema() {
-    try {
-      return JSON.parse(schema);
-    } catch (e) {
-      return null;
-    }
-  }
   return (
     <div className="mx-auto max-w-2xl space-y-3 p-12">
       <HomeBreadcrumb title="AI: Structured Outputs" />
@@ -67,22 +50,10 @@ The rating system is:
       <div>
         <form action={action} className="space-y-2">
           <input type="hidden" name="action" value="submission" readOnly hidden />
-          <Input
-            name="apiKey"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder="OpenAI API Key"
-            style={{ WebkitTextSecurity: "disc" } as any}
-            autoComplete="off"
-          />
           <Input name="videoUrl" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="YouTube video URL" required />
-          <Textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Prompt" required />
-          <Textarea name="schema" value={schema} onChange={(e) => setSchema(e.target.value)} rows={10} placeholder="Schema" required />
-
-          {/* {JSON.stringify(zodSchema, null, 2)} */}
 
           <div className="flex justify-end">
-            <Button type="submit" disabled={pending || !getObjSchema()} className={clsx(pending && "base-spinner")}>
+            <Button type="submit" disabled={pending} className={clsx(pending && "base-spinner")}>
               Submit
             </Button>
           </div>
