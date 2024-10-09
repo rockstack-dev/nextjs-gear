@@ -42,8 +42,9 @@ export async function captions({
         throw new Error(`Could not find captions for ${lang}`);
       }
     }
-  } catch (err) {
+  } catch (err: any) {
     console.error("Error fetching video info:", err);
+    throw err;
   }
   return null;
 }
