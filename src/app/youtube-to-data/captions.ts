@@ -18,7 +18,9 @@ export async function captions({
   prompt: string;
 }) {
   try {
-    const info = await ytdl.getInfo(videoUrl);
+    const info = await ytdl.getInfo(videoUrl).catch((e) => {
+      throw new Error(`Could not get video info: ${e.message}`);
+    });
     const tracks = info.player_response?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
 
     if (!tracks || tracks.length === 0) {
