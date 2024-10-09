@@ -9,6 +9,7 @@ import HomeBreadcrumb from "@/components/HomeBreadcrumb";
 import { z, ZodTypeAny } from "zod";
 import { Input } from "@/components/ui/input";
 import { getDataFromVideo } from "./action";
+import { YoutubeTranscript } from "youtube-transcript";
 
 const defaultSchema = {
   results: {
@@ -43,9 +44,21 @@ export default function () {
   const [result, setResult] = useState<any>({});
   const [videoUrl, setVideoUrl] = useState<string>("https://www.youtube.com/watch?v=PJORkfmnmdY&t=1s");
 
+  async function onTest() {
+    try {
+      const transcript = await YoutubeTranscript.fetchTranscript(videoUrl);
+      toast.success("Transcript fetched: " + JSON.stringify(transcript, null, 2));
+    } catch (error) {
+      console.error("Error fetching transcript:", error);
+      throw error;
+    }
+  }
   return (
     <div className="mx-auto max-w-2xl space-y-3 p-12">
       <HomeBreadcrumb title="AI: Structured Outputs" />
+      <button type="button" onClick={onTest}>
+        Test
+      </button>
       <h1 className="text-3xl font-bold">AI: Structured Outputs</h1>
       <div>
         <form action={action} className="space-y-2">

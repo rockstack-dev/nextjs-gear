@@ -1,25 +1,27 @@
 import { YoutubeTranscript } from "youtube-transcript";
-import { Innertube } from "youtubei.js/web";
+YoutubeTranscript.fetchTranscript("videoId or URL").then(console.log);
 
 export async function captions({ videoUrl }: { videoUrl: string }) {
   try {
-    const youtube = await Innertube.create({
-      lang: "en",
-      location: "US",
-      retrieve_player: false,
-    });
+    // const youtube = await Innertube.create({
+    //   lang: "en",
+    //   location: "US",
+    //   retrieve_player: false,
+    // });
 
     try {
-      const info = await youtube.getInfo(videoUrl);
-      const transcriptData = await info.getTranscript();
-      console.log({
-        transcriptData,
-      });
-      const transcriptSnippets = transcriptData.transcript.content?.body?.initial_segments.map((segment) => segment.snippet.text || "") || [];
-      console.log({
-        transcriptSnippets,
-      });
-      return cleanText(transcriptSnippets.join(" "));
+      // const info = await youtube.getInfo(videoUrl);
+      // const transcriptData = await info.getTranscript();
+      // console.log({
+      //   transcriptData,
+      // });
+      // const transcriptSnippets = transcriptData.transcript.content?.body?.initial_segments.map((segment) => segment.snippet.text || "") || [];
+      // console.log({
+      //   transcriptSnippets,
+      // });
+      // return cleanText(transcriptSnippets.join(" "));
+
+      return await YoutubeTranscript.fetchTranscript(videoUrl);
     } catch (error) {
       console.error("Error fetching transcript:", error);
       throw error;
