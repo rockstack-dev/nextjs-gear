@@ -7,6 +7,13 @@ export async function getDataFromVideo(prev: any, form: FormData) {
   const videoUrl = form.get("videoUrl")?.toString();
   const prompt = form.get("prompt")?.toString();
   const schemaString = form.get("schema")?.toString();
+  const tokenId = form.get("tokenId")?.toString();
+  const cookie = form.get("cookie")?.toString();
+  if (!tokenId || !cookie) {
+    if (process.env.NODE_ENV !== "development") {
+      return { error: "YouTube cookie and X-YouTube-Identity-Token headers are required in production so YouTube captions can be fetched." };
+    }
+  }
   if (!apiKey || !videoUrl || !prompt || !schemaString) {
     return { error: "Missing required fields" };
   }
@@ -23,6 +30,8 @@ export async function getDataFromVideo(prev: any, form: FormData) {
       apiKey: apiKey,
       schemaObject,
       prompt,
+      tokenId,
+      cookie,
     });
     return { success: "Data generated", result };
   } catch (e: any) {

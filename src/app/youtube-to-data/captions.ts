@@ -10,17 +10,63 @@ export async function captions({
   apiKey,
   schemaObject,
   prompt,
+  tokenId,
+  cookie,
 }: {
   videoUrl: string;
   languages: string[];
   apiKey: string;
   schemaObject: any;
   prompt: string;
+  cookie?: string;
+  tokenId?: string;
 }) {
   try {
-    const info = await ytdl.getInfo(videoUrl).catch((e) => {
-      throw new Error(`Could not get video info: ${e.message}`);
+    console.log({ cookie, tokenId });
+    const info: ytdl.videoInfo = await new Promise((resolve, reject) => {
+      const video = ytdl(videoUrl, {
+        requestOptions: {
+          headers: {
+            cookie,
+            // Optional. If not given, ytdl-core will try to find it.
+            // You can find this by going to a video's watch page, viewing the source,
+            // and searching for "ID_TOKEN".
+            ...(tokenId ? { "x-youtube-identity-token": tokenId } : {}),
+          },
+        },
+      });
+
+      video.on("info", async (info: ytdl.videoInfo) => {
+        console.log("title:", info.videoDetails.title);
+        console.log("rating:", info.player_response.videoDetails.averageRating);
+        console.log("uploaded by:", info.videoDetails.author.name);
+        const captions = info.player_response.captions?.playerCaptionsTracklistRenderer.captionTracks;
+        if (!captions || captions.length === 0) {
+          throw new Error("No captions available for this video");
+        }
+        resolve(info);
+      });
+
+      video.on("error", (err) => {
+        reject(err);
+      });
     });
+
+    console.log({ info });
+
+    // const info = await video
+    //   .getInfo(videoUrl, {
+    //     requestOptions: {
+    //       headers: {
+    //         cookie,
+    //         "x-youtube-identity-token": tokenId,
+    //       },
+    //     },
+    //   })
+    //   .catch((e) => {
+    //     throw new Error(`Could not get video info: ${e.message}`);
+    //   });
+
     const tracks = info.player_response?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
 
     if (!tracks || tracks.length === 0) {
@@ -38,7 +84,7 @@ export async function captions({
       }
 
       if (track) {
-        return await processTrack({ track, info, lang, videoUrl, apiKey, schemaObject, prompt });
+        return await processTrack({ track, info, lang, videoUrl, apiKey, schemaObject, prompt, cookie, tokenId });
       } else {
         console.log("Could not find captions for", lang);
         throw new Error(`Could not find captions for ${lang}`);
@@ -59,6 +105,8 @@ async function processTrack({
   apiKey,
   schemaObject,
   prompt,
+  cookie,
+  tokenId,
 }: {
   track: ytdl.captionTrack;
   info: ytdl.videoInfo;
@@ -67,8 +115,10 @@ async function processTrack({
   apiKey: string;
   schemaObject: string;
   prompt: string;
+  cookie?: string;
+  tokenId?: string;
 }) {
-  const captionsString = await downloadCaptions(track.baseUrl).catch((e) => {
+  const captionsString = await downloadCaptions({ url: track.baseUrl, cookie, tokenId }).catch((e) => {
     throw new Error(`Error downloading captions: ${e.message}`);
   });
 
@@ -108,23 +158,32 @@ ${cleanedText}`,
   return videoData;
 }
 
-async function downloadCaptions(url: string): Promise<string> {
+async function downloadCaptions({ url, cookie, tokenId }: { url: string; cookie?: string; tokenId?: string }): Promise<string> {
   return new Promise((resolve, reject) => {
     https
-      .get(`${url}`, (res) => {
-        let data = "";
-        res.on("data", (chunk) => {
-          data += chunk;
-        });
+      .get(
+        `${url}`,
+        {
+          headers: {
+            cookie,
+            ...(tokenId ? { "x-youtube-identity-token": tokenId } : {}),
+          },
+        },
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => {
+            data += chunk;
+          });
 
-        res.on("end", () => {
-          resolve(data);
-        });
+          res.on("end", () => {
+            resolve(data);
+          });
 
-        res.on("error", (err) => {
-          reject(err);
-        });
-      })
+          res.on("error", (err) => {
+            reject(err);
+          });
+        }
+      )
       .on("error", (err) => reject(err));
   });
 }

@@ -9,6 +9,9 @@ import HomeBreadcrumb from "@/components/HomeBreadcrumb";
 import { z, ZodTypeAny } from "zod";
 import { Input } from "@/components/ui/input";
 import { getDataFromVideo } from "./action";
+import InfoBanner from "@/components/ui/banners/InfoBanner";
+import Link from "next/link";
+import ExternalLinkEmptyIcon from "@/components/ui/icons/ExternalLinkEmptyIcon";
 
 const defaultSchema = {
   results: {
@@ -67,6 +70,11 @@ The rating system is:
       <div>
         <form action={action} className="space-y-2">
           <input type="hidden" name="action" value="submission" readOnly hidden />
+
+          <Input name="videoUrl" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="YouTube video URL" required />
+          <Textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)} rows={3} placeholder="Prompt" required />
+          <Textarea name="schema" value={schema} onChange={(e) => setSchema(e.target.value)} rows={3} placeholder="Schema" required />
+
           <Input
             name="apiKey"
             value={apiKey}
@@ -75,9 +83,20 @@ The rating system is:
             style={{ WebkitTextSecurity: "disc" } as any}
             autoComplete="off"
           />
-          <Input name="videoUrl" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} placeholder="YouTube video URL" required />
-          <Textarea name="prompt" value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Prompt" required />
-          <Textarea name="schema" value={schema} onChange={(e) => setSchema(e.target.value)} rows={10} placeholder="Schema" required />
+
+          <div className="grid grid-cols-2 gap-2">
+            <Input name="cookie" placeholder="YouTube Cookie header" style={{ WebkitTextSecurity: "disc" } as any} defaultValue="" />
+            <Input name="tokenId" placeholder="YouTube X-YouTube-Identity-Token header" defaultValue="" style={{ WebkitTextSecurity: "disc" } as any} />
+          </div>
+
+          <InfoBanner title="YouTube credentials">
+            <Button asChild className="bg-blue-200 text-blue-900 hover:bg-blue-300">
+              <Link href="https://youtu.be/0KwxLx_3eh8" target="_blank" className="flex items-center gap-1">
+                <div>Learn how to get your Cookie and Token.</div>
+                <ExternalLinkEmptyIcon className="h-4 w-4" />
+              </Link>
+            </Button>
+          </InfoBanner>
 
           {/* {JSON.stringify(zodSchema, null, 2)} */}
 
